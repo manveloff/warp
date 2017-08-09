@@ -1,0 +1,20 @@
+{
+		"extra": {
+			"version": "5.4.0"
+		},
+		"name": "warpcomplex/warp",
+		"description": "WARP Project Control Center (aka hub)",
+    "license": "gtmmm2011@gmail.com",
+    "authors": [
+        {
+            "name": "gtmmm2011",
+            "email": "gtmmm2011@gmail.com"
+        }
+    ],
+    "require": {
+			"predis/predis": "~1.0"
+		},
+    "autoload": {
+        "psr-4": {"WARP\\": ""}
+    }
+}
