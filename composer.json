@@ -3,12 +3,12 @@
 		"version": "5.4.0"
 	},
 	"name": "warpcomplex/warp",
-	"description": "WARP Project Control Center (aka hub)",
+	"description": "WARP Project Control Center",
 	"license": "MIT",
 	"authors": [
 		{
-				"name": "gtmmm2011",
-				"email": "gtmmm2011@gmail.com"
+			"name": "gtmmm2011",
+			"email": "gtmmm2011@gmail.com"
 		}
 	],
 	"require": {
