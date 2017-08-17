@@ -1,7 +1,6 @@
 <?php
 /**
  *
- * General.php
  * General Service Provider of the hub
  *
  */
@@ -50,6 +49,9 @@ class General extends ServiceProvider {
         realpath(__DIR__ . '/../other/localization/en/localization.php') => resource_path('lang/en/warp.php'),
       ], 'warp');
 
+    // 4. Register WARP php-helpers
+    require realpath(__DIR__ . '/../other/helpers/helpers.php');
+
   }
 
   /**
@@ -62,7 +64,7 @@ class General extends ServiceProvider {
 
       // Commands to register
       $commands = [
-
+        '\WARP\console\Warp'
       ];
 
       // Register $commands

@@ -1,29 +1,50 @@
-<!DOCTYPE html>
-<html lang="ru">
- <head>
-  <meta charset="utf-8" />
-  <title>  </title>
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <style>
-   article,aside,details,figcaption,figure,
-   footer,header,hgroup,menu,nav,section { 
-   display:block; 
-   }
-
-   
-   
-  </style>   
- </head>
- <body>
-
 <?php
+/**
+ *
+ * WARP Event
+ *
+ */
+
+namespace WARP\events;
+use Illuminate\Queue\SerializesModels,
+    Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class Event {
+
+  //--------------//
+  // A. Use trait //
+  //--------------//
+  use SerializesModels;
+
+  //----------------------------//
+  // B. Variables for arguments //
+  //----------------------------//
+  // - During translation, public variables will be passed
+  public $data;
+
+  //---------------------------------------------------------------------//
+  // C. Accept arguments passed when an instance of the event is created //
+  //---------------------------------------------------------------------//
+  // - The instances of the model passed in the argument will be serialized
+  public function __construct($data) {
+
+    $this->data = $data;
+
+  }
+
+}
 
 
 
-?> 
 
- </body>
-</html>
- 
+
+
+
+
+
+
+
+
+
+
+

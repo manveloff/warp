@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html lang="ru">
- <head>
-  <meta charset="utf-8" />
-  <title>  </title>
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <style>
-   article,aside,details,figcaption,figure,
-   footer,header,hgroup,menu,nav,section { 
-   display:block; 
-   }
-
-   
-   
-  </style>   
- </head>
- <body>
-
 <?php
+/**
+ *
+ * Gates Service Provider of the hub
+ *
+ */
 
+namespace WARP\providers;
+use Illuminate\Support\ServiceProvider,
+    Illuminate\Contracts\Events\Dispatcher,
+    Illuminate\Support\Facades\Gate;
 
+class Gates extends ServiceProvider {
 
-?> 
+  /**
+   * boot
+   */
+  public function boot() {
 
- </body>
-</html>
- 
+    /**
+     * [DEMO] Can the user change the post or not?
+     */
+    Gate::define('update-post', function ($user, $post) {
+      return $user->id == $post->user_id;
+    });
+
+  }
+
+  /**
+   * register
+   */
+  public function register() {}
+
+}
