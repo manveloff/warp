@@ -9,7 +9,7 @@
 
 ---
 
-## Ссылки <a id="link1"></a>
+## Links <a id="link1"></a>
 ```
 
   > Address on GitHub
@@ -20,7 +20,7 @@
 
 ## Description <a id="link2"></a>
 ```
-WARP Project Control Center, also known as "hub".
+WARP Project Control Center
 
 
  
