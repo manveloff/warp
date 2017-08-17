@@ -138,8 +138,8 @@ Step-by-step installation instruction
       ...
       "PSR-4": {
         ...
-	    "WARP\\": "vendor/warpcomplex/warp/app"
-	  }
+        "WARP\\": "vendor/warpcomplex/warp/app"
+      }
     },
 
   5. Put this string to aliases in config/app.php of your project:
