@@ -83,7 +83,7 @@ Step-by-step installation instruction
 
   8. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    'WARP\models\Users::class'
+    WARP\models\Users::class
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -126,7 +126,7 @@ Step-by-step uninstallation instruction
 
   7. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    'App\User::class'
+    App\User::class
 
 ```
 
@@ -200,7 +200,7 @@ Step-by-step installation instruction
 
   10. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    'WARP\models\Users::class'
+    WARP\models\Users::class
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -255,7 +255,7 @@ Step-by-step uninstallation instruction
 
   9. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    'App\User::class'
+    App\User::class
 
 
 ```

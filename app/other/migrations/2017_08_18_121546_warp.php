@@ -52,9 +52,54 @@ class Warp extends Migration
   public function up() {
 
     // 1. Create 'warp' database if not exists
-    DB::connection()->statement('CREATE DATABASE IF NOT EXISTS warp');
+    DB::connection()->statement('CREATE DATABASE IF NOT EXISTS warp DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci');
 
+    // 2. Create 'migration' table if not exists
+    DB::statement("CREATE TABLE IF NOT EXISTS `warp`.`migrations` (
+      `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+      `migration` VARCHAR(255) NOT NULL,
+      `batch` INT(11) NOT NULL,
+      PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;");
 
+    // 3. Create 'users' table if not exists
+    DB::statement("CREATE TABLE IF NOT EXISTS `warp`.`users` (
+      `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+      `email` VARCHAR(512) NOT NULL,
+      `password` VARCHAR(512) NOT NULL,
+      `remember_token` VARCHAR(512) NULL DEFAULT NULL,
+      PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;");
+
+    // 4. Create 'groups' table if not exists
+    DB::statement("CREATE TABLE IF NOT EXISTS `warp`.`groups` (
+      `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+      `name` VARCHAR(512) NOT NULL,
+      `description` TEXT NOT NULL,
+      PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;");
+
+    // 5. Create 'pivot_users_groups' table with n:m relationships between 'users' and 'groups'
+    DB::statement("CREATE TABLE IF NOT EXISTS `warp`.`pivot_users_groups` (
+      `users_id` INT(10) UNSIGNED NOT NULL,
+      `groups_id` INT(10) UNSIGNED NOT NULL,
+      INDEX `fk_pivot_users_groups_users_idx` (`users_id` ASC),
+      INDEX `fk_pivot_users_groups_groups1_idx` (`groups_id` ASC),
+      CONSTRAINT `fk_pivot_users_groups_users`
+        FOREIGN KEY (`users_id`)
+        REFERENCES `warp`.`users` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `fk_pivot_users_groups_groups1`
+        FOREIGN KEY (`groups_id`)
+        REFERENCES `warp`.`groups` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;");
 
   }
 
@@ -65,10 +110,14 @@ class Warp extends Migration
    */
   public function down() {
 
-    // 1. Drop 'warp' database if exists
-    DB::connection()->statement('DROP DATABASE IF EXISTS warp');
+    // 1. Drop 'pivot_users_groups' table
+    DB::statement("DROP TABLE IF EXISTS `warp`.`pivot_users_groups`");
 
+    // 2. Drop 'users' table
+    DB::statement("DROP TABLE IF EXISTS `warp`.`users`");
 
+    // 3. Drop 'groups' table
+    DB::statement("DROP TABLE IF EXISTS `warp`.`groups`");
 
   }
 }
