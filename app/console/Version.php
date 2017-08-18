@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * WARP CLI reference
+ * Version
  *
  */
 
@@ -41,7 +41,7 @@ use Illuminate\Console\Command,
     Illuminate\Support\Facades\Validator,
     Illuminate\Support\Facades\View;
 
-class Warp extends Command {
+class Version extends Command {
 
   /**
    * Artisan command template
@@ -56,14 +56,14 @@ class Warp extends Command {
    *
    * @var string
    */
-  protected $signature = 'warp';
+  protected $signature = 'warp:version';
 
   /**
    * Artisan command description
    *
    * @var string
    */
-  protected $description = 'Show WARP CLI reference';
+  protected $description = 'Get version of installed WARP package';
 
   /**
    * The class constructor
@@ -115,37 +115,13 @@ class Warp extends Command {
   public function handle()
   {
 
-    // 1. Version
+    // 1. Output version
+    $version = \WARP\App::version();
     $this->output->write('WARP Complex ');
-    $this->info(\WARP\App::version());
-    $this->output->newLine();
+    $this->info($version);
 
-    // 2. Usage
-    $this->comment('Usage:');
-    $this->line('  warp [options] [arguments]');
-    $this->output->newLine();
-
-    // 3. Available commands
-
-      // 3.1. Prepare available commands array
-      $ac = [
-        ['warp',                    'Display this help message'],
-        ['warp:install',            'Invoke all necessary install operations'],
-        ['warp:uninstall',          'Invoke all necessary uninstall operations']
-      ];
-
-      // 3.2. Set length of command names equal to 24
-      foreach($ac as &$item) {
-        $item[0] = str_pad($item[0], 22, ' ', STR_PAD_RIGHT);
-      }
-
-      // 3.3. Output
-      $this->comment('Available commands:');
-      foreach($ac as $i) {
-        $this->output->write('  <info>'.$i[0].'</info>');
-        $this->line($i[1]);
-      }
-      $this->output->newLine();
+    // 2. Return version
+    return $version;
 
   }
 

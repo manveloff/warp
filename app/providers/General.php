@@ -64,7 +64,9 @@ class General extends ServiceProvider {
 
       // Commands to register
       $commands = [
-        '\WARP\console\Warp'
+        '\WARP\console\Install',
+        '\WARP\console\Uninstall',
+        '\WARP\console\Version',
       ];
 
       // Register $commands

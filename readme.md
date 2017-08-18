@@ -48,14 +48,14 @@ Step-by-step installation instruction
 
     composer update
 
-  3. Put this string to aliases in config/app.php of your project:
+  3. Put this string to 'aliases' in 'config/app.php' of your project:
 
     "aliases" => [
       ...
       WARP => WARP\App::class,
     ]
 
-  4. Put this strings to providers in config/app.php of your project:
+  4. Put this strings to 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
@@ -64,10 +64,26 @@ Step-by-step installation instruction
       WARP\providers\Gates::class,
     ]
 
-  5. Invoke this commands in terminal at your project root:
+  5. Uncomment this string in 'providers' in 'config/app.php' of your project:
+
+    "providers" => [
+      ...
+      App\Providers\BroadcastServiceProvider::class,
+      ...
+    ]
+
+  6. Invoke this commands in terminal at your project root:
 
     composer dump-autoload    // will have updated composer class autoloader
     artisan warp:install      // will have performed several install processes
+
+  7. Invoke this command in terminal at your project root to run the package migrations:
+
+    artisan migrate --path=vendor/warpcomplex/warp/app/other/migrations/
+
+  8. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+
+    'WARP\models\Users::class'
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -83,14 +99,14 @@ Step-by-step uninstallation instruction
 
     composer update
 
-  3. Remove this string from aliases in config/app.php of your project:
+  3. Remove this string from 'aliases' in 'config/app.php' of your project:
 
     "aliases" => [
       ...
       WARP => WARP\App::class,
     ]
 
-  4. Remove this strings from providers in config/app.php of your project:
+  4. Remove this strings from 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
@@ -104,6 +120,13 @@ Step-by-step uninstallation instruction
     composer dump-autoload    // will have updated composer class autoloader
     artisan warp:uninstall    // will have performed several uninstall processes
 
+  6. Invoke this command in terminal at your project root to rollback the package migrations:
+
+    artisan migrate:rollback --path=vendor/warpcomplex/warp/app/other/migrations/
+
+  7. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+
+    'App\User::class'
 
 ```
 
@@ -142,14 +165,14 @@ Step-by-step installation instruction
       }
     },
 
-  5. Put this string to aliases in config/app.php of your project:
+  5. Put this string to 'aliases' in 'config/app.php' of your project:
 
     "aliases" => [
       ...
       WARP => WARP\App::class,
     ]
 
-  6. Put this strings to providers in config/app.php of your project:
+  6. Put this strings to 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
@@ -158,10 +181,26 @@ Step-by-step installation instruction
       WARP\providers\Gates::class,
     ]
 
-  7. Invoke this commands in terminal at your project root:
+  7. Uncomment this string in 'providers' in 'config/app.php' of your project:
+
+    "providers" => [
+      ...
+      App\Providers\BroadcastServiceProvider::class,
+      ...
+    ]
+
+  8. Invoke this commands in terminal at your project root:
 
     composer dump-autoload    // will have updated composer class autoloader
     artisan warp:install      // will have performed several install processes
+
+  9. Invoke this command in terminal at your project root to run the package migrations:
+
+    artisan migrate --path=vendor/warpcomplex/warp/app/other/migrations/
+
+  10. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+
+    'WARP\models\Users::class'
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -189,14 +228,14 @@ Step-by-step uninstallation instruction
 	  }
     },
 
-  5. Remove this string from aliases in config/app.php of your project:
+  5. Remove this string from 'aliases' in 'config/app.php' of your project:
 
     "aliases" => [
       ...
       WARP => WARP\App::class,
     ]
 
-  6. Remove this strings from providers in config/app.php of your project:
+  6. Remove this strings from 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
@@ -209,6 +248,15 @@ Step-by-step uninstallation instruction
 
     composer dump-autoload    // will have updated composer class autoloader
     artisan warp:uninstall    // will have performed several uninstall processes
+
+  8. Invoke this command in terminal at your project root to rollback the package migrations:
+
+    artisan migrate:rollback --path=vendor/warpcomplex/warp/app/other/migrations/
+
+  9. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+
+    'App\User::class'
+
 
 ```
 
