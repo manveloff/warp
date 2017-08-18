@@ -54,7 +54,7 @@ class Warp extends Migration
     // 1. Create 'warp' database if not exists
     DB::connection()->statement('CREATE DATABASE IF NOT EXISTS warp');
 
-    
+
 
   }
 

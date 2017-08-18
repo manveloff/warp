@@ -81,7 +81,7 @@ Step-by-step installation instruction
 
     artisan migrate --path=vendor/warpcomplex/warp/app/other/migrations/
 
-  8. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+  8. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
     'WARP\models\Users::class'
 
@@ -124,7 +124,7 @@ Step-by-step uninstallation instruction
 
     artisan migrate:rollback --path=vendor/warpcomplex/warp/app/other/migrations/
 
-  7. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+  7. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
     'App\User::class'
 
@@ -198,7 +198,7 @@ Step-by-step installation instruction
 
     artisan migrate --path=vendor/warpcomplex/warp/app/other/migrations/
 
-  10. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+  10. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
     'WARP\models\Users::class'
 
@@ -253,7 +253,7 @@ Step-by-step uninstallation instruction
 
     artisan migrate:rollback --path=vendor/warpcomplex/warp/app/other/migrations/
 
-  9. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with
+  9. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
     'App\User::class'
 
