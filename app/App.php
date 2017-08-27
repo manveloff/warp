@@ -1,6 +1,6 @@
 <?php
 
-namespace WARP;
+namespace WARP\CC\app;
 
 /**
  *
@@ -12,15 +12,10 @@ class App {
   /** @var string|null WARP version */
   public static $version = '5.4.0';
 
-  /** @var string|null Public test property */
-  public $test;
-
-
   /**
    * The class constructor
-   * @param string $test Test param
    */
-  public function __construct($test) {
+  public function __construct() {
 
   }
 
@@ -34,14 +29,7 @@ class App {
   /**
    * Invoke all necessary install operations
    */
-  public function install() {
-
-    // - Добавить алиас WARP => WARP\App::class в aliases в config/app.php
-    // - Заменить App\User::class (или иное значение) в providers->users->model на WARP\models\Users::class в config/auth.php
-    // - Раскомментировать App\Providers\BroadcastServiceProvider в config/app.php
-    // - Выполнить команду warp:compile
-    // - Выполнить миграции пакета.
-
+  public static function install() {
 
 
 
@@ -50,12 +38,73 @@ class App {
   /**
    * Invoke all necessary uninstall operations
    */
-  public function uninstall($del_schema = false) {
+  public static function uninstall($del_schema = false) {
 
-    // - Убрать алиас WARP => WARP\App::class из aliases в config/app.php
-    // - Заменить значение в providers->users->model в config/auth.php на App\User::class
-    // - Откатить миграции пакета, если $del_schema = true
-    // - Удалить все задачи пакета из планировщика проекта
+
+
+  }
+
+  /**
+   * Make compiler
+   */
+  public static function compiler($del_schema = false) {
+
+    return new \WARP\CC\app\compile\Compiler();
+
+  }
+
+  /**
+   * Make Make
+   */
+  public static function make(&$output) {
+
+    return new \WARP\CC\app\make\Make($output);
+
+  }
+
+  /**
+   * Make Remove
+   */
+  public static function remove(&$output) {
+
+    return new \WARP\CC\app\remove\Remove($output);
+
+  }
+
+  /**
+   * Sync WARP application structure
+   */
+  public static function makeStructure(&$output) {
+
+    // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'
+    $fs = warp_fs_manager();
+
+    // 2. Prepare function creating catalogue if it is not exists
+    $makeDirectory = function(&$fs, $path){
+      if(!$fs->exists($path))
+        $fs->makeDirectory($path);
+    };
+
+    // 3. Prepare array with path list to check
+    $paths = [
+      'config/warp',
+      'config/warp/modules',
+      'config/warp/slots',
+      'config/warp/connectors',
+      'warp',
+      'warp/modules',
+      'warp/slots',
+      'warp/connectors',
+      'storage/warp'
+    ];
+
+    // 4. Check all
+    foreach($paths as $path) {
+      $makeDirectory($fs, $path);
+    }
+
+    // 5. Unset $fs
+    unset($fs);
 
   }
 

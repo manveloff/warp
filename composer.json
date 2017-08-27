@@ -15,6 +15,6 @@
 		"predis/predis": "~1.0"
 	},
 	"autoload": {
-		"psr-4": {"WARP\\": "app"}
+		"psr-4": {"WARP\\": ""}
 	}
 }

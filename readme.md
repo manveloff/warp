@@ -52,16 +52,16 @@ Step-by-step installation instruction
 
     "aliases" => [
       ...
-      WARP => WARP\App::class,
+      WARP => WARP\CC\app\App::class,
     ]
 
   4. Put this strings to 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
-      WARP\providers\General::class,
-      WARP\providers\Validators::class,
-      WARP\providers\Gates::class,
+      WARP\CC\providers\General::class,
+      WARP\CC\providers\Validators::class,
+      WARP\CC\providers\Gates::class,
     ]
 
   5. Uncomment this string in 'providers' in 'config/app.php' of your project:
@@ -83,7 +83,7 @@ Step-by-step installation instruction
 
   8. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    WARP\models\Users::class
+    WARP\CC\models\Users::class
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -103,16 +103,16 @@ Step-by-step uninstallation instruction
 
     "aliases" => [
       ...
-      WARP => WARP\App::class,
+      WARP => WARP\CC\app\App::class,
     ]
 
   4. Remove this strings from 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
-      WARP\providers\General::class,
-      WARP\providers\Validators::class,
-      WARP\providers\Gates::class,
+      WARP\CC\providers\General::class,
+      WARP\CC\providers\Validators::class,
+      WARP\CC\providers\Gates::class,
     ]
 
   5. Invoke this commands in terminal at your project root:
@@ -161,7 +161,7 @@ Step-by-step installation instruction
       ...
       "PSR-4": {
         ...
-        "WARP\\": "vendor/warpcomplex/warp/app"
+        "WARP\\CC\\": "vendor/warpcomplex/warp"
       }
     },
 
@@ -169,16 +169,16 @@ Step-by-step installation instruction
 
     "aliases" => [
       ...
-      WARP => WARP\App::class,
+      WARP => WARP\CC\app\App::class,
     ]
 
   6. Put this strings to 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
-      WARP\providers\General::class,
-      WARP\providers\Validators::class,
-      WARP\providers\Gates::class,
+      WARP\CC\providers\General::class,
+      WARP\CC\providers\Validators::class,
+      WARP\CC\providers\Gates::class,
     ]
 
   7. Uncomment this string in 'providers' in 'config/app.php' of your project:
@@ -200,7 +200,7 @@ Step-by-step installation instruction
 
   10. Replace 'model' value in 'users' in 'providers' in 'config/auth.php' with:
 
-    WARP\models\Users::class
+    WARP\CC\models\Users::class
 
 Step-by-step uninstallation instruction
 ---------------------------------------
@@ -224,7 +224,7 @@ Step-by-step uninstallation instruction
       ...
       "PSR-4": {
         ...
-	    "WARP\\": "vendor/warpcomplex/warp/app"
+	    "WARP\\CC\\": "vendor/warpcomplex/warp"
 	  }
     },
 
@@ -232,16 +232,16 @@ Step-by-step uninstallation instruction
 
     "aliases" => [
       ...
-      WARP => WARP\App::class,
+      WARP => WARP\CC\app\App::class,
     ]
 
   6. Remove this strings from 'providers' in 'config/app.php' of your project:
 
     "providers" => [
       ...
-      WARP\providers\General::class,
-      WARP\providers\Validators::class,
-      WARP\providers\Gates::class,
+      WARP\CC\providers\General::class,
+      WARP\CC\providers\Validators::class,
+      WARP\CC\providers\Gates::class,
     ]
 
   7. Invoke this commands in terminal at your project root:
