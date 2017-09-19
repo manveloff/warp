@@ -37,7 +37,7 @@ class Middleware extends Base {
   /** @var string Middleware type (Before or After) */
   public $mw_type;
 
-  /** @var string Name of the middleware*/
+  /** @var string Name of the middleware */
   public $mw_name;
 
   /** @var string Description of the middleware */

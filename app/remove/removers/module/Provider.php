@@ -28,15 +28,17 @@ class Provider extends Base {
     // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'
     $fs = warp_fs_manager();
 
-    // 2. ...
-
+    // 2. Remove provider file
+    if($fs->exists('warp/modules/'.$this->resource->module_name.'/providers/'.$this->resource->sp_name)) {
+      if(!$fs->delete('warp/modules/'.$this->resource->module_name.'/providers/'.$this->resource->sp_name))
+        throw new \Exception("Can't find service provider to remove in the module");
+    }
 
     // m. Unset $fs
     unset($fs);
 
     // n. Notify about successful resource remove
-    //$this->output->info("Job '".$this->resource->job_name."' has been removed from the module '".$this->resource->module_name."' successfully!");
-
+    $this->output->info("Service provider '".$this->resource->sp_name."' has been removed from the module '".$this->resource->module_name."' successfully!");
   } catch(\Exception $e) {
 
     // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'

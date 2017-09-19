@@ -5,7 +5,7 @@ use \WARP\CC\app\remove\Remove,
     \WARP\CC\app\remove\constructors\Base,
     \WARP\CC\app\remove\Validators;
 
-class Provider extends Base {
+class Model extends Base {
 
 //---------//
 // General //
@@ -19,7 +19,7 @@ class Provider extends Base {
     // Set this constructor methods to iterator array
     $this->array = [
       'get_module_name',
-      'get_sp_name'
+      'get_model_name'
     ];
 
   }
@@ -32,9 +32,8 @@ class Provider extends Base {
   /** @var string Name of the module */
   public $module_name;
 
-  /** @var string Name of the service provicer */
-  public $sp_name;
-
+  /** @var string Name of the model */
+  public $get_model_name;
 
 
 //---------------------//
@@ -55,7 +54,7 @@ class Provider extends Base {
     })->toArray();
 
     // 3. Ask user about module name
-    $result = mb_strtolower($this->output->choice("Module where is the service provider to remove", $modules));
+    $result = mb_strtolower($this->output->choice("Module where is the model to remove", $modules));
 
     // 4. Check if there is already a module with such name
     $validation = Validators::module_name($result);
@@ -78,23 +77,23 @@ class Provider extends Base {
   }
 
   /**
-   * Get sp name
+   * Get model name
    */
-  protected function get_sp_name() {
+  protected function get_model_name() {
 
     // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'
     $fs = warp_fs_manager();
 
-    // 2. Get array of all service providers in module $this->module_name
-    $providers = collect($fs->files('warp/modules/'.$this->module_name.'/providers'))->map(function($element){
+    // 2. Get array of all model in module $this->module_name
+    $models = collect($fs->files('warp/modules/'.$this->module_name.'/models'))->map(function($element){
       return basename($element);
     })->toArray();
 
-    // 3. Ask user about provider name
-    $result = warp_mb_ucfirst(mb_strtolower($this->output->choice("Service provider to remove", $providers)));
+    // 3. Ask user about model name
+    $result = warp_mb_ucfirst(mb_strtolower($this->output->choice("Model to remove", $models)));
 
     // 4. Check if there is already a module with such name
-    $validation = Validators::sp_name($result, $this->module_name);
+    $validation = Validators::model_name($result, $this->module_name);
 
     // 5. If not valid, ask to input data again
     if(!$validation['is_valid']) {
@@ -103,7 +102,7 @@ class Provider extends Base {
     }
 
     // 6. Write down the $result
-    $this->sp_name = $result;
+    $this->model_name = $result;
 
     // 7. Unset $fs
     unset($fs);

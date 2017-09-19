@@ -67,10 +67,11 @@ class Make {
       'Exception',
       'Job',
       'Listener',
+      'Middleware',
+      'Model',
       'Module',
       'Provider',
       'Test',
-      'Middleware',
 
       self::RESTART,
       self::EX

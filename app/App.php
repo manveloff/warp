@@ -47,9 +47,9 @@ class App {
   /**
    * Make compiler
    */
-  public static function compiler($del_schema = false) {
+  public static function compiler(&$output, $array = []) {
 
-    return new \WARP\CC\app\compile\Compiler();
+    return new \WARP\CC\app\compile\Compiler($output, $array);
 
   }
 
@@ -74,15 +74,22 @@ class App {
   /**
    * Sync WARP application structure
    */
-  public static function makeStructure(&$output) {
+  public static function makeStructure(&$output, &$log = NULL) {
 
     // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'
     $fs = warp_fs_manager();
 
     // 2. Prepare function creating catalogue if it is not exists
-    $makeDirectory = function(&$fs, $path){
-      if(!$fs->exists($path))
-        $fs->makeDirectory($path);
+    $makeDirectory = function(&$fs, $path) USE ($log, $output) {
+      if(!$fs->exists($path)) {
+
+        // Make directory
+        $result = $fs->makeDirectory($path);
+
+        // Return true
+        return true;
+
+      }
     };
 
     // 3. Prepare array with path list to check
@@ -99,9 +106,32 @@ class App {
     ];
 
     // 4. Check all
-    foreach($paths as $path) {
-      $makeDirectory($fs, $path);
-    }
+
+      // 4.1. Notify about structure making start
+
+        // Log
+        if(!empty($log)) {
+          $log->logger->info("\n");
+          $log->logger->info("  WARP structure synchronization");
+        }
+
+        // Output
+        $output->info("");
+        $output->comment("  WARP structure synchronization");
+
+      // 4.2. Check all
+      $count = 0;
+      foreach($paths as $path) {
+        if($makeDirectory($fs, $path) === true) {
+          $count++;
+          $output->line("  -> $path");
+          if(!empty($log)) $log->logger->info("  -> $path");
+        }
+      }
+      if($count === 0) {
+        $output->line("  Nothing to synchronize.");
+        if(!empty($log)) $log->logger->info("  Nothing to synchronize.");
+      }
 
     // 5. Unset $fs
     unset($fs);

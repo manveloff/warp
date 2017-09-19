@@ -32,7 +32,7 @@ class Job extends Base {
   /** @var string Name of the module */
   public $module_name;
 
-  /** @var string Name of the job*/
+  /** @var string Name of the job */
   public $job_name;
 
 

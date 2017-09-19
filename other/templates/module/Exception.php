@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
- <head>
-  <meta charset="utf-8" />
-  <title>  </title>
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <style>
-   article,aside,details,figcaption,figure,
-   footer,header,hgroup,menu,nav,section { 
-   display:block; 
-   }
-
-   
-   
-  </style>   
- </head>
- <body>
-
 <?php
+/**
+ *
+ * The Exception "({[exception_name]})" of the module "({[module_name]})"
+ *
+ * ({[exception_description]})
+ *
+ */
+
+namespace WARP\modules\({[module_name]})\other\exceptions;
+
+use Exception;
+
+class ({[exception_name]}) extends Exception {
+
+  /**
+   * The class constructor
+   */
+  public function __construct() {
 
 
+    // TODO: exception code
 
-?> 
 
- </body>
-</html>
- 
+  }
+
+
+}

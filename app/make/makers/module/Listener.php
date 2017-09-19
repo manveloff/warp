@@ -25,7 +25,55 @@ class Listener extends Base {
    */
   public function make() {
 
-    $this->output->line('make');
+    // 1. Get instance (base path always equal to base_path()) of '\Illuminate\Filesystem\Filesystem'
+    $fs = warp_fs_manager();
+
+    // 2. Copy template file
+    // - From 'vendor/warpcomplex/warp/other/templates/module/Listener.php'
+    // - To 'warp/modules/$this->resource->module_name/listeners/$this->resource->listener_name.php'
+    if(!$fs->copy( "vendor/warpcomplex/warp/other/templates/module/Listener.php",
+                   "warp/modules/".$this->resource->module_name."/listeners/".$this->resource->listener_name.".php"))
+      throw new \Exception("Can't copy template listener from 'vendor/warpcomplex/warp/other/templates/module/Listener.php'");
+
+    // 3. Find and replace all placeholders in all files
+
+      // 3.1. Prepare placeholder and file names
+      $data = [
+        'module_name' => [
+          'warp/modules/'.$this->resource->module_name.'/listeners/'.$this->resource->listener_name.".php",
+        ],
+        'listener_name' => [
+          'warp/modules/'.$this->resource->module_name.'/listeners/'.$this->resource->listener_name.".php",
+        ],
+        'listener_description' => [
+          'warp/modules/'.$this->resource->module_name.'/listeners/'.$this->resource->listener_name.".php",
+        ],
+        'listener_keys' => [
+          'warp/modules/'.$this->resource->module_name.'/listeners/'.$this->resource->listener_name.".php",
+        ]
+      ];
+
+      // 3.2. Find and replace
+      foreach($data as $parameter => $value) {
+        foreach($data[$parameter] as $path) {
+
+          // Extract file content
+          $file = $fs->get($path);
+
+          // Find and replace placeholders
+          $file = preg_replace("/\(\{\[".$parameter."\]\}\)/ui", $this->resource->{$parameter}, $file);
+
+          // 4] Перезаписать файл
+          $fs->put($path, $file);
+
+        }
+      }
+
+    // m. Unset $fs
+    unset($fs);
+
+    // n. Notify about successful resource creation
+    $this->output->info("Listener '".$this->resource->listener_name."' in module '".$this->resource->module_name."' has been created successfully!");
 
   }
 
@@ -34,14 +82,6 @@ class Listener extends Base {
 // Maker methods //
 //---------------//
 
-  /**
-   * One
-   */
-  protected function one() {
-
-    $this->output->line('one');
-
-  }
 
 
 }

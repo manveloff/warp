@@ -149,7 +149,7 @@ class Base implements \SeekableIterator {
   }
 
   /**
-   * Go to the next position
+   * Go to the prev position
    */
   public function back() {
     if($this->valid($this->position - 1)) {

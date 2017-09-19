@@ -116,53 +116,57 @@ class Compile extends Command {
   {
 
     // 1. Create new compiler
-    $app = \WARP::compiler();
+    $compiler = \WARP::compiler($this);
 
-    // 2. Prepare function-handler of compilation process results
-    $handle = function($result){
+    // 2. Invoke compilation process
+    $compiler->compile();
 
-      // description
-      $this->output->write('  <comment>'.$result['description'].'</comment>');
-      $this->output->write('... ');
 
-      // success
-      if($result['success'] == true) {
-        $this->output->write('<info>success</info>');
-      }
-
-      // failure
-      else {
-        $this->output->write('<error>failure</error>');
-        $this->output->newLine();
-        $this->output->write('Error: ');
-        $this->output->write($result['error']);
-      }
-
-      // new line
-      $this->output->newLine();
-
-    };
-
-    // 3. Execute all compilation processes
-
-      // Notify about start of compilation
-      $this->question('WARP compilation');
-      $this->output->newLine();
-
-      // Execute compilation processes
-      $handle($app->makeStructure());
-      $handle($app->syncProviders());
-      $handle($app->pubResources());
-      $handle($app->syncSchedule());
-      $handle($app->syncEloquentModels());
-      $handle($app->syncSlots());
-      $handle($app->syncConnectors());
-      $handle($app->executeTests());
-
-      // Notify about compile log
-      $this->output->newLine();
-      $this->output->write("  For a detailed report, see the compilation log at <info>'storage/logs/warp/compilation.log'</info>");
-      $this->output->newLine();
+//    // 2. Prepare function-handler of compilation process results
+//    $handle = function($result){
+//
+//      // description
+//      $this->output->write('  <comment>'.$result['description'].'</comment>');
+//      $this->output->write('... ');
+//
+//      // success
+//      if($result['success'] == true) {
+//        $this->output->write('<info>success</info>');
+//      }
+//
+//      // failure
+//      else {
+//        $this->output->write('<error>failure</error>');
+//        $this->output->newLine();
+//        $this->output->write('Error: ');
+//        $this->output->write($result['error']);
+//      }
+//
+//      // new line
+//      $this->output->newLine();
+//
+//    };
+//
+//    // 3. Execute all compilation processes
+//
+//      // Notify about start of compilation
+//      $this->question('WARP compilation');
+//      $this->output->newLine();
+//
+//      // Execute compilation processes
+//      $handle($app->makeStructure());
+//      $handle($app->syncProviders());
+//      $handle($app->pubResources());
+//      $handle($app->syncSchedule());
+//      $handle($app->syncEloquentModels());
+//      $handle($app->syncSlots());
+//      $handle($app->syncConnectors());
+//      $handle($app->executeTests());
+//
+//      // Notify about compile log
+//      $this->output->newLine();
+//      $this->output->write("  For a detailed report, see the compilation log at <info>'storage/logs/warp/compilation.log'</info>");
+//      $this->output->newLine();
 
 
   }

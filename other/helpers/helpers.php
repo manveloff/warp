@@ -513,7 +513,7 @@ if(!function_exists('warp_check_schema_exist')) {
    *  <h1>Example</h1>
    *  <pre>
    *    $schema = "warp";
-   *    $is_schema_exists = warp_check_schema_exist(warp);  // true
+   *    $is_schema_exists = warp_check_schema_exist($schema);  // true
    *  </pre>
    *
    * @param  string $schema

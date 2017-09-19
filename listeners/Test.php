@@ -21,7 +21,7 @@ class Test {  // write here "implements ShouldQueue" - and then the handler will
   /**
    * The event handler method
    */
-  public function handle(\WARP\CC\events\Event $event) {
+  public function handle(\WARP\CC\other\events\Event $event) {
 
     /**
      * Check the keys and get the incoming data
